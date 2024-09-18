@@ -9,12 +9,12 @@ $title = "Quiz";
 if (isset($_SESSION['user'])) {
     $loggedInUser = $_SESSION['user'];
 
-    if (isset($loggedInUser['UserID'])) {
-        $userId = $loggedInUser['UserID'];
+    if (isset($loggedInUser['user_id'])) {
+        $userId = $loggedInUser['user_id'];
 
         require_once "../app/Views/project/index.view.php";
     } else {
-        echo "UserID not found in session";
+        echo "user_id not found in session";
     }
 } else {
     header("Location: /");
