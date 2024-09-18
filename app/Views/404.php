@@ -13,7 +13,7 @@ require_once "../app/Views/Components/head.php";
       </svg>
     </div>
 
-    <p class="mb-4 text-lg text-gray-200">It seems you've hit a broken link or the page no longer exists.</p>
+    <p class="mb-4 text-lg text-gray-200">It seemss you've hit a broken link or the page no longer exists.</p>
     <a href="/" class="bg-white text-blue-600 font-bold py-2 px-4 rounded-md shadow-md hover:bg-blue-100 transition ease-in-out duration-300">Go back to Home</a>
   </div>
 </div>
