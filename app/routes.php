@@ -16,7 +16,10 @@ return [
     '/user/delete' => '../app/Controllers/user/delete.php',
 
 
-    
+    '/quiz/create' => '../app/Controllers/quiz/create.php',
+    '/quiz/store' => '../app/Controllers/quiz/store.php', 
+    '/quiz/show/{id}' => '../app/Controllers/quiz/show.php',
+
     '/project' => '../app/Controllers/project/index.php',
 
 ];
