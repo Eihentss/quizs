@@ -1,0 +1,23 @@
+<?php
+
+require_once "../app/Core/DBConnect.php";
+require_once "../app/Models/project.php";
+
+$projectModel = new projectModel();
+$title = "Quiz";
+
+if (isset($_SESSION['user'])) {
+    $loggedInUser = $_SESSION['user'];
+
+    if (isset($loggedInUser['UserID'])) {
+        $userId = $loggedInUser['UserID'];
+
+        require_once "../app/Views/project/index.view.php";
+    } else {
+        echo "UserID not found in session";
+    }
+} else {
+    header("Location: /");
+    exit();
+}
+?> 

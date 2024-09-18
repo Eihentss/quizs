@@ -1,0 +1,79 @@
+CREATE DATABASE quiz_completion_site;
+
+USE quiz_completion_site;
+
+-- Table to store user information
+CREATE TABLE Users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table to store quizzes
+CREATE TABLE Quizzes (
+    quiz_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    created_by INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES Users(user_id) ON DELETE SET NULL
+);
+
+-- Table to store quiz questions
+CREATE TABLE Questions (
+    question_id INT AUTO_INCREMENT PRIMARY KEY,
+    quiz_id INT,
+    question_text TEXT NOT NULL,
+    question_type ENUM('multiple_choice', 'true_false', 'short_answer') DEFAULT 'multiple_choice',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (quiz_id) REFERENCES Quizzes(quiz_id) ON DELETE CASCADE
+);
+
+-- Table to store answers to quiz questions
+CREATE TABLE Answers (
+    answer_id INT AUTO_INCREMENT PRIMARY KEY,
+    question_id INT,
+    answer_text TEXT NOT NULL,
+    is_correct BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (question_id) REFERENCES Questions(question_id) ON DELETE CASCADE
+);
+
+-- Table to store user quiz records (user quiz attempt details)
+CREATE TABLE UserQuizRecords (
+    record_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    quiz_id INT,
+    started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    completed_at TIMESTAMP,
+    score DECIMAL(5, 2),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (quiz_id) REFERENCES Quizzes(quiz_id) ON DELETE CASCADE
+);
+
+-- Table to store individual question responses from users
+CREATE TABLE UserQuizAnswers (
+    answer_id INT AUTO_INCREMENT PRIMARY KEY,
+    record_id INT,
+    question_id INT,
+    selected_answer_id INT,
+    is_correct BOOLEAN,
+    FOREIGN KEY (record_id) REFERENCES UserQuizRecords(record_id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES Questions(question_id) ON DELETE CASCADE,
+    FOREIGN KEY (selected_answer_id) REFERENCES Answers(answer_id) ON DELETE CASCADE
+);
+
+-- Table to store quiz results for each user after completion
+CREATE TABLE QuizResults (
+    result_id INT AUTO_INCREMENT PRIMARY KEY,
+    record_id INT,
+    user_id INT,
+    quiz_id INT,
+    score DECIMAL(5, 2) NOT NULL,
+    passed BOOLEAN DEFAULT FALSE,
+    completion_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (record_id) REFERENCES UserQuizRecords(record_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (quiz_id) REFERENCES Quizzes(quiz_id) ON DELETE CASCADE
+);
