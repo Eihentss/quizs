@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Pēc veiksmīgas saglabāšanas pāradresē uz vadības paneli
-        header("Location: /dashboard");
+        header("Location: /project");
         exit();
     } else {
         // Ja ir problēma ar datiem, izvada kļūdu

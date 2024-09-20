@@ -1,42 +1,51 @@
 <?php
 require "../app/Models/user.php";
 
-
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usermodel = new userModel;
 
-    if(!isset($_POST["username"]) || !isset($_POST["password"])){
+    // Pārbauda, vai lietotājvārds un parole ir norādīti
+    if (!isset($_POST["username"]) || !isset($_POST["password"])) {
         $errors[] = "All fields are required";
     }
 
+    // Attīra ievadītos datus
     $username = trim($_POST["username"]);
     $password = $_POST["password"];
 
-    if(!Validator::String($username)){
+    // Validē lietotājvārdu un paroli
+    if (!Validator::String($username)) {
         $errors[] = "Username is invalid";
     }
 
-    if(!Validator::String($password)){
+    if (!Validator::String($password)) {
         $errors[] = "Password is invalid";
     }
 
-    if(empty($errors)){
-        $user = $usermodel->loginUser($username , $password);
+    // Ja nav kļūdu, turpina ar autentifikāciju
+    if (empty($errors)) {
+        $user = $usermodel->loginUser($username, $password);
 
-        if($user != false){
-            $_SESSION["user"] = $user;
-            // Redirect after successful login
+        if ($user != false) {
+            // Saglabā lietotāja datus sesijā
+            $_SESSION["user"] = [
+                'user_id' => $user['user_id'],
+                'username' => $user['username'],
+                'role' => $user['role'] // Saglabā arī lomu, ja tāda ir pieejama
+            ];
+
+            // Veiksmīgas pieteikšanās gadījumā novirza uz projekta lapu
             header("Location: /project");
-            exit; // Ensure that no other output interferes with the header redirect
+            exit(); // Nodrošina, ka pēc header nosūtīšanas netiek izvadīta cita informācija
         } else {
-            $errors[] = "Invalid password";
+            $errors[] = "Invalid username or password";
         }
     }
 }
 
-// Load the login view file
+// Ielādē pieteikšanās skatu
 $title = "Login";
 require_once "../app/Views/user/login.view.php";
 ?>

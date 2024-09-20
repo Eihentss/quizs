@@ -7,9 +7,9 @@
 
 return [
     "host" => "localhost",
-    "port" => "8888",
-    "dbname" => "quiz",
+    "port" => "3306",
+    "dbname" => "quiz_completion_site",
     "user" => "root",
-    "password" => "root",
+    "password" => "",
     "charset" => "UTF8"
 ];
