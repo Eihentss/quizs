@@ -1,6 +1,7 @@
 <?php require_once "../app/Views/Components/head.php"; ?>
 
 <style>
+    /* CSS izmaiņas, lai uzlabotu izkārtojumu */
     body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -30,18 +31,12 @@
     }
 
     input[type="text"], 
-    textarea, 
-    select {
+    textarea {
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    textarea {
-        resize: vertical;
     }
 
     .question {
@@ -54,15 +49,6 @@
 
     .answers-container {
         margin: 10px 0;
-    }
-
-    .answers-container input[type="text"] {
-        width: calc(100% - 50px);
-        display: inline-block;
-    }
-
-    .answers-container input[type="radio"] {
-        margin-right: 5px;
     }
 
     button {
@@ -80,34 +66,11 @@
     button:hover {
         background-color: #4cae4c;
     }
-
-    .error-message {
-        color: red;
-        font-size: 14px;
-        margin: 10px 0;
-    }
 </style>
 
 <body>
 
 <div class="container">
-
-    <?php
-    // Pārbauda, vai lietotājs ir administrators
-    if (!isset($_SESSION['user'])) {
-        // Ja lietotājs nav pieteicies, novirza uz pieteikšanās lapu
-        header('Location: /user/login');
-        exit();
-    }
-
-    // Pārbauda, vai lietotājam ir 'admin' loma
-    if ($_SESSION['user']['role'] !== 'admin') {
-        // Ja lietotājs nav administrators, novirza uz paneļa lapu
-        header('Location: /dashboard');
-        exit();
-    }
-    ?>
-
     <h1>Create a New Quiz</h1>
     <form action="/quiz/store" method="POST">
         <label for="title">Quiz Title:</label>
@@ -116,41 +79,30 @@
         <label for="description">Description:</label>
         <textarea name="description"></textarea>
 
-        <!-- Questions can be dynamically added with JS -->
+        <!-- Questions and answers -->
         <div id="questions-container">
             <h3>Questions</h3>
             <div class="question">
                 <label for="question_text[]">Question:</label>
                 <input type="text" name="question_text[]" required>
 
-                <label for="question_type[]">Type:</label>
-                <select name="question_type[]">
-                    <option value="multiple_choice">Multiple Choice</option>
-                    <option value="true_false">True/False</option>
-                    <option value="short_answer">Short Answer</option>
-                </select>
-
+                <label for="question_type[]">Answer Options:</label>
                 <div class="answers-container">
-                    <!-- Placeholder for 4 answers -->
                     <div class="answer">
-                        <input type="text" name="answers[0][]" required>
-                        <input type="radio" name="is_correct[0]" value="0" checked> No
-                        <input type="radio" name="is_correct[0]" value="1"> Yes
+                        <input type="text" name="answers[0][]" required placeholder="Correct answer">
+                        <input type="radio" name="is_correct[0]" value="0" checked> Correct
                     </div>
                     <div class="answer">
-                        <input type="text" name="answers[0][]" required>
-                        <input type="radio" name="is_correct[0]" value="0" checked> No
-                        <input type="radio" name="is_correct[0]" value="1"> Yes
+                        <input type="text" name="answers[0][]" required placeholder="Wrong answer">
+                        <input type="radio" name="is_correct[0]" value="1"> Incorrect
                     </div>
                     <div class="answer">
-                        <input type="text" name="answers[0][]" required>
-                        <input type="radio" name="is_correct[0]" value="0" checked> No
-                        <input type="radio" name="is_correct[0]" value="1"> Yes
+                        <input type="text" name="answers[0][]" required placeholder="Wrong answer">
+                        <input type="radio" name="is_correct[0]" value="2"> Incorrect
                     </div>
                     <div class="answer">
-                        <input type="text" name="answers[0][]" required>
-                        <input type="radio" name="is_correct[0]" value="0" checked> No
-                        <input type="radio" name="is_correct[0]" value="1"> Yes
+                        <input type="text" name="answers[0][]" required placeholder="Wrong answer">
+                        <input type="radio" name="is_correct[0]" value="3"> Incorrect
                     </div>
                 </div>
             </div>
@@ -160,7 +112,6 @@
 
         <input type="submit" value="Create Quiz">
     </form>
-
 </div>
 
 <script>
@@ -172,33 +123,22 @@
             <label for="question_text[]">Question:</label>
             <input type="text" name="question_text[]" required>
 
-            <label for="question_type[]">Type:</label>
-            <select name="question_type[]">
-                <option value="multiple_choice">Multiple Choice</option>
-                <option value="true_false">True/False</option>
-                <option value="short_answer">Short Answer</option>
-            </select>
-
             <div class="answers-container">
                 <div class="answer">
-                    <input type="text" name="answers[\${questionCount}][]" required>
-                    <input type="radio" name="is_correct[\${questionCount}]" value="0" checked> No
-                    <input type="radio" name="is_correct[\${questionCount}]" value="1"> Yes
+                    <input type="text" name="answers[\${questionCount}][]" required placeholder="Correct answer">
+                    <input type="radio" name="is_correct[\${questionCount}]" value="0" checked> Correct
                 </div>
                 <div class="answer">
-                    <input type="text" name="answers[\${questionCount}][]" required>
-                    <input type="radio" name="is_correct[\${questionCount}]" value="0" checked> No
-                    <input type="radio" name="is_correct[\${questionCount}]" value="1"> Yes
+                    <input type="text" name="answers[\${questionCount}][]" required placeholder="Wrong answer">
+                    <input type="radio" name="is_correct[\${questionCount}]" value="1"> Incorrect
                 </div>
                 <div class="answer">
-                    <input type="text" name="answers[\${questionCount}][]" required>
-                    <input type="radio" name="is_correct[\${questionCount}]" value="0" checked> No
-                    <input type="radio" name="is_correct[\${questionCount}]" value="1"> Yes
+                    <input type="text" name="answers[\${questionCount}][]" required placeholder="Wrong answer">
+                    <input type="radio" name="is_correct[\${questionCount}]" value="2"> Incorrect
                 </div>
                 <div class="answer">
-                    <input type="text" name="answers[\${questionCount}][]" required>
-                    <input type="radio" name="is_correct[\${questionCount}]" value="0" checked> No
-                    <input type="radio" name="is_correct[\${questionCount}]" value="1"> Yes
+                    <input type="text" name="answers[\${questionCount}][]" required placeholder="Wrong answer">
+                    <input type="radio" name="is_correct[\${questionCount}]" value="3"> Incorrect
                 </div>
             </div>
         </div>`;

@@ -17,7 +17,6 @@
                 <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
                 <input type="password" id="password" name="password" value="<?= $_POST["password"] ?? null ?>" required
                     class="w-full px-4 py-2 mt-2 text-gray-900 bg-white border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition ease-in-out duration-150">
-                <a href="/user/lostPassword" class="text-sm text-pink-400 hover:underline block mt-2 text-right">Forgot your password?</a>
             </div>
 
             <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold py-2 px-4 rounded-md hover:bg-gradient-to-r hover:from-pink-600 hover:to-purple-600 focus:outline-none focus:ring-4 focus:ring-pink-500 focus:ring-opacity-50 transition-transform transform hover:scale-105 ease-in-out duration-300">Login</button>
