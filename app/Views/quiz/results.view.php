@@ -17,9 +17,15 @@
 
     <div class="bg-white shadow-xl rounded-2xl p-10 max-w-3xl w-full">
     <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8">Results</h1>
-    <div class="flex justify-center mt-8">
-        <a href="/quiz/start?quiz_id=<?php echo $quizId; ?>" class="px-8 py-4 bg-blue-600 text-white rounded-full">Restart Quiz</a>
-    </div>
+    <!-- <p class="text-center">You answered <?php echo $_SESSION['correct_answers']; ?> out of <?php echo $_SESSION['total_questions']; ?> questions correctly.</p> -->
+    <div class="flex justify-center mt-8 space-x-4">
+            <a href="/quiz/start?quiz_id=<?php echo $quizId; ?>" class="px-8 py-4 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+                Restart Quiz
+            </a>
+            <a href="/project" class="px-8 py-4 bg-gray-600 text-white rounded-full hover:bg-gray-700 transition">
+                Choose Another Quiz
+            </a>
+        </div>
 </div>  
 </div>
 
