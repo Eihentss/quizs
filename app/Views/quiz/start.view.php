@@ -22,6 +22,9 @@
             <?php
             // Iegūstam atbildes šim jautājumam
             $answers = $quizModel->getAnswersByQuestionId($currentQuestion['question_id']);
+
+            // Shuffle answers
+            shuffle($answers);
             ?>
 
             <!-- Pārbaudām, vai atbildes eksistē -->

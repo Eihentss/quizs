@@ -12,7 +12,7 @@ if (isset($_GET['quiz_id'])) {
     // Get the quiz and its questions
     $quiz = $quizModel->getQuizById($quizId);  
     $questions = $quizModel->getQuestionsByQuizId($quizId);  
-
+     
     // Initialize session variables if not set
     if (!isset($_SESSION['current_question_index'])) {
         $_SESSION['current_question_index'] = 0;

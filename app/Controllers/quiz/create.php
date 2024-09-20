@@ -1,7 +1,6 @@
 <?php 
-require_once "../app/Core/DBConnect.php"; // Database connection
-require_once "../app/Models/quizModel.php"; // Quiz model
-
+require_once "../app/Core/DBConnect.php";
+require_once "../app/Models/quizModel.php";
 
 $quizModel = new QuizModel();
 $title = "Create or Edit a Quiz";
@@ -21,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quiz_selection = $_POST['quiz_selection'] ?? null;
 
     if ($quiz_selection === 'new_quiz') {
-        // Creating a new quiz
+        // Logic for creating a new quiz
         $title = $_POST['title'] ?? null;
         $description = $_POST['description'] ?? null;
         $questions = $_POST['question_text'] ?? [];
@@ -29,10 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $is_correct = $_POST['is_correct'] ?? [];
 
         if ($title && !empty($questions)) {
-            // Create the quiz
             $quiz_id = $quizModel->createQuiz($title, $description, $userId);
 
-            // Save questions and answers
             foreach ($questions as $index => $question_text) {
                 $question_id = $quizModel->createQuestion($quiz_id, $question_text, 'multiple_choice');
 
@@ -47,9 +44,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "Quiz title and questions are required.";
         }
-    } 
-    // Logic for editing existing quizzes can be added here
+    } else {
+        // Logic for editing existing quizzes
+        // Fetch existing quiz data and questions to prepopulate the form
+        $existingQuiz = $quizModel->getQuizById($quiz_selection);
+        $existingQuestions = $quizModel->getQuestionsByQuizId($quiz_selection);
+        
+        // Display the quiz editing form populated with existing data
+        require_once "../app/Views/quiz/edit.php"; // Load the edit form view
+    }
 } else {
-    require_once "../app/Views/quiz/create.php"; // Load the form view
+    require_once "../app/Views/quiz/create.php"; // Load the create form view
 }
+
 ?>

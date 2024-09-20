@@ -5,6 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($title); ?></title>
+    <style>
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: #4CAF50;
+            width: <?php echo ($_SESSION['current_question_index'] / $_SESSION['total_questions']) * 100; ?>%;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-r from-blue-50 to-blue-100 flex justify-center items-center min-h-screen">
 
@@ -13,13 +27,26 @@
         <?php echo htmlspecialchars($title); ?>
     </h1>
 
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    <p class="text-center text-gray-700 mb-4">
+        Question <?php echo $_SESSION['current_question_index'] + 1; ?> of <?php echo $_SESSION['total_questions']; ?>
+    </p>
+
     <form action="" method="POST">
         <div class="mb-10">
-            <h3 class="text-2xl font-semibold mb-6 text-gray-700">Question <?php echo $_SESSION['current_question_index'] + 1; ?>: <?php echo htmlspecialchars($currentQuestion['question_text']); ?></h3>
+            <h3 class="text-2xl font-semibold mb-6 text-gray-700">
+                Question <?php echo $_SESSION['current_question_index'] + 1; ?>: <?php echo htmlspecialchars($currentQuestion['question_text']); ?>
+            </h3>
 
             <?php
-            // Iegūstam atbildes šim jautājumam
+            // Get the answers for this question
             $answers = $quizModel->getAnswersByQuestionId($currentQuestion['question_id']);
+            
+            // Shuffle the answers
+            shuffle($answers);
             ?>
 
             <div class="space-y-4">
@@ -32,14 +59,13 @@
             </div>
         </div>
 
-        <!-- Poga iesniegšanai -->
+        <!-- Submit button -->
         <div class="flex justify-center mt-8">
             <button type="submit" class="px-8 py-4 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-1">
                 Submit Quiz
             </button>
         </div>
     </form>
-
 </div>
 
 </body>
