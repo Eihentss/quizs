@@ -18,9 +18,34 @@
             width: <?php echo ($_SESSION['current_question_index'] / $_SESSION['total_questions']) * 100; ?>%;
             border-radius: 5px;
         }
+        
+        /* Style for the Submit button */
+        .submit-btn {
+            background: linear-gradient(to right, #a7c5eb, #89b0e4, #72a0e0); /* Baby blue gradient */
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(to right, #89b0e4, #72a0e0, #5a90dc); /* Darker baby blue on hover */
+            transform: translateY(-5px); /* Lifting effect */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+        }
+
+        /* Radio button container style */
+        .radio-container:hover {
+            background-color: #e3f2fd; /* Light blue on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+            transform: translateY(-5px); /* Slight lift effect */
+        }
     </style>
 </head>
-<body class="bg-gradient-to-r from-blue-50 to-blue-100 flex justify-center items-center min-h-screen">
+<body class="bg-gradient-to-b from-[#89CFF0] to-white flex justify-center items-center min-h-screen">
 
 <div class="bg-white shadow-xl rounded-2xl p-10 max-w-3xl w-full transform hover:scale-105 transition-transform duration-300 ease-in-out">
     <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8">
@@ -51,7 +76,7 @@
 
             <div class="space-y-4">
                 <?php foreach ($answers as $answer): ?>
-                    <div class="flex items-center p-4 bg-gray-100 rounded-lg shadow-inner hover:bg-blue-50 transition-colors">
+                    <div class="flex items-center p-4 bg-gray-100 rounded-lg shadow-inner radio-container transition-colors">
                         <input type="radio" name="question_<?php echo $currentQuestion['question_id']; ?>" value="<?php echo $answer['answer_id']; ?>" class="mr-4 h-6 w-6 text-blue-600 border-gray-300 focus:ring-blue-500" required>
                         <label class="text-lg text-gray-800"><?php echo htmlspecialchars($answer['answer_text']); ?></label>
                     </div>
@@ -61,7 +86,7 @@
 
         <!-- Submit button -->
         <div class="flex justify-center mt-8">
-            <button type="submit" class="px-8 py-4 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-1">
+            <button type="submit" class="submit-btn">
                 Submit Quiz
             </button>
         </div>
