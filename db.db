@@ -78,3 +78,7 @@ CREATE TABLE QuizResults (
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (quiz_id) REFERENCES Quizzes(quiz_id) ON DELETE CASCADE
 );
+
+
+DROP TABLE `userquizanswers`;
+DROP TABLE `quizresults`;
