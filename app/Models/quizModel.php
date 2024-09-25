@@ -45,10 +45,16 @@ class QuizModel
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllRecords($quiz_id)
+    public function getAllRecords(int $quizId)
     {
-        $query = $this->db->dbconn->prepare("SELECT * FROM UserQuizRecords WHERE quiz_id = :quiz_id  ORDER BY score");
-        $query->execute([':quiz_id' => $quiz_id]);
+        $query = $this->db->dbconn->prepare("
+            SELECT UserQuizRecords.user_id, UserQuizRecords.score, users.username
+            FROM UserQuizRecords
+            JOIN users ON UserQuizRecords.user_id = users.user_id
+            WHERE UserQuizRecords.quiz_id = :quizId
+            ORDER BY UserQuizRecords.score DESC
+        ");
+        $query->execute([':quizId' => $quizId]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
