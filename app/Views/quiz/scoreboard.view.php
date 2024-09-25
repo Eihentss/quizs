@@ -1,3 +1,4 @@
+<?php require_once "../app/Views/Components/head.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +16,8 @@
         </h1>
 
         <?php if (!empty($scores)): ?>
-            <div class="overflow-x-auto">
-                <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+            <div class="overflow-x-auto rounded-xl">
+                <table class="min-w-full bg-white border border-gray-300 rounded-xl">
                     <thead>
                         <tr class="w-full bg-blue-500 text-white text-left">
                             <th class="py-3 px-6 font-bold uppercase text-sm">Rank</th>
