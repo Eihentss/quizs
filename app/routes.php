@@ -17,8 +17,9 @@ return [
 
 
     '/quiz/create' => '../app/Controllers/quiz/create.php',
-    '/quiz/store' => '../app/Controllers/quiz/store.php', 
+    '/quiz/store' => '../app/Controllers/quiz/store.php',
     '/quiz/start' => '../app/Controllers/quiz/start.php',
+    '/quiz/scores' => '../app/Controllers/quiz/scoreboard.php',
 
 
 

@@ -10,9 +10,9 @@ if (isset($_GET['quiz_id'])) {
     $quizId = $_GET['quiz_id'];
 
     // Get the quiz and its questions
-    $quiz = $quizModel->getQuizById($quizId);  
-    $questions = $quizModel->getQuestionsByQuizId($quizId);  
-     
+    $quiz = $quizModel->getQuizById($quizId);
+    $questions = $quizModel->getQuestionsByQuizId($quizId);
+
     // Initialize session variables if not set
     if (!isset($_SESSION['current_question_index'])) {
         $_SESSION['current_question_index'] = 0;
@@ -39,12 +39,14 @@ if (isset($_GET['quiz_id'])) {
     if ($_SESSION['current_question_index'] >= $_SESSION['total_questions']) {
         $correctAnswers = $_SESSION['correct_answers'];
         $totalQuestions = $_SESSION['total_questions'];
-    
+
+        $record = $quizModel->createRecord($_SESSION['user']['user_id'], $quizId, $correctAnswers);
+
         // Reset only the score-related session variables
         unset($_SESSION['correct_answers']);
         unset($_SESSION['total_questions']);
         unset($_SESSION['current_question_index']); // Optional
-    
+
         // Check if the user is logged in and display results
         if (isset($_SESSION['user'])) {
             // Display the results
