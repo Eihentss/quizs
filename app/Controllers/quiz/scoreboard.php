@@ -6,7 +6,7 @@ $quizModel = new QuizModel();
 $title = "Create or Edit a Quiz";
 
 if (!isset($_SESSION['user'])) {
-    header("Location: /user/login");
+    header("Location: /login");
 
 
     exit();
@@ -14,5 +14,12 @@ if (!isset($_SESSION['user'])) {
 
 if (isset($_GET['quiz_id'])) {
     $quizId = $_GET['quiz_id'];
-    $score = $quizModel->getAllRecords($quiz_id);
+    $scores = $quizModel->getAllRecords($quizId);
+
+
+
+    $title = "Quiz Results";
+    require_once "../app/Views/quiz/scoreboard.view.php";
+} else {
+    echo "No quiz ID provided.";
 }
