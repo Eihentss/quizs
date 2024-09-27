@@ -113,3 +113,20 @@ INSERT INTO Answers (question_id, answer_text, is_correct) VALUES
     (48, 'Tanki,  ķīmiskie ieroči (gāzes)', FALSE),
     (48, 'Tanki,  ieroči, ak-47 (gāzes)', FALSE);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
