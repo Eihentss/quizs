@@ -1,0 +1,399 @@
+
+
+INSERT INTO Quizzes (title, description, created_by)
+VALUES 
+    ('City Capitals', 'Test your knowledge of world capitals', 1),
+    ('Science Basics', 'Basic science questions for everyone', 1),
+    ('World Geography', 'Test your knowledge of world geography', 1),
+    ('History Facts', 'Quiz about key historical facts', 1),
+    ('Mathematics', 'Basic math quiz for all levels', 1);
+
+INSERT INTO Questions (quiz_id, question_text, question_type)
+VALUES 
+    (1, 'What is the capital of France?', 'multiple_choice'),
+    (1, 'What is the capital of Germany?', 'multiple_choice'),
+    (1, 'What is the capital of Spain?', 'multiple_choice'),
+    (1, 'What is the capital of Italy?', 'multiple_choice'),
+    (1, 'What is the capital of the UK?', 'multiple_choice'),
+    (1, 'What is the capital of Japan?', 'multiple_choice'),
+    (1, 'What is the capital of Australia?', 'multiple_choice'),
+    (1, 'What is the capital of Canada?', 'multiple_choice'),
+    (1, 'What is the capital of Brazil?', 'multiple_choice'),
+    (1, 'What is the capital of India?', 'multiple_choice'),
+    (1, 'What is the capital of Russia?', 'multiple_choice'),
+    (1, 'What is the capital of Egypt?', 'multiple_choice'),
+    (1, 'What is the capital of South Africa?', 'multiple_choice'),
+    (1, 'What is the capital of Argentina?', 'multiple_choice'),
+    (1, 'What is the capital of Mexico?', 'multiple_choice'),
+    (2, 'What is the chemical symbol for water?', 'multiple_choice'),
+    (2, 'How many planets are in the solar system?', 'multiple_choice'),
+    (2, 'What is the chemical formula for carbon dioxide?', 'multiple_choice'),
+    (2, 'What is the speed of light?', 'multiple_choice'),
+    (2, 'What is the largest planet in the solar system?', 'multiple_choice'),
+    (2, 'What is the atomic number of hydrogen?', 'multiple_choice'),
+    (2, 'What gas do plants absorb from the atmosphere?', 'multiple_choice'),
+    (2, 'What is the process by which plants make their food?', 'multiple_choice'),
+    (2, 'What is the primary source of energy for life on Earth?', 'multiple_choice'),
+    (2, 'Which element has the chemical symbol "O"?', 'multiple_choice'),
+    (3, 'Which is the largest continent?', 'multiple_choice'),
+    (3, 'Which country has the most time zones?', 'multiple_choice'),
+    (3, 'What is the longest river in the world?', 'multiple_choice'),
+    (3, 'Which desert is the largest in the world?', 'multiple_choice'),
+    (3, 'What is the smallest country in the world?', 'multiple_choice'),
+    (3, 'What is the highest mountain in the world?', 'multiple_choice'),
+    (3, 'Which ocean is the largest?', 'multiple_choice'),
+    (3, 'Which country has the largest population?', 'multiple_choice'),
+    (3, 'Which city is known as the City of Canals?', 'multiple_choice'),
+    (3, 'In which country would you find the Eiffel Tower?', 'multiple_choice'),
+    (4, 'Who was the first President of the United States?', 'multiple_choice'),
+    (4, 'In which year did World War I start?', 'multiple_choice'),
+    (4, 'Which empire was ruled by Julius Caesar?', 'multiple_choice'),
+    (4, 'Who discovered America?', 'multiple_choice'),
+    (4, 'What year did the Berlin Wall fall?', 'multiple_choice'),
+    (4, 'Which war was fought between the North and South regions in the United States?', 'multiple_choice'),
+    (4, 'Who was the first man to walk on the moon?', 'multiple_choice'),
+    (4, 'What was the main ship used by Christopher Columbus on his first voyage?', 'multiple_choice'),
+    (4, 'In which year did the Titanic sink?', 'multiple_choice'),
+    (4, 'Who was the first female Prime Minister of the United Kingdom?', 'multiple_choice'),
+    (5, 'What is 5 + 7?', 'multiple_choice'),
+    (5, 'What is the square root of 64?', 'multiple_choice'),
+    (5, 'What is 12 * 12?', 'multiple_choice'),
+    (5, 'What is the value of Pi rounded to two decimal places?', 'multiple_choice'),
+    (5, 'What is 15 divided by 3?', 'multiple_choice'),
+    (5, 'What is 9 squared?', 'multiple_choice'),
+    (5, 'If a triangle has sides 3, 4, and 5, what type of triangle is it?', 'multiple_choice'),
+    (5, 'What is 100 minus 37?', 'multiple_choice'),
+    (5, 'What is the formula for the area of a circle?', 'multiple_choice'),
+    (5, 'What is 7 cubed?', 'multiple_choice');
+
+-- Insert answers for City Capitals quiz (questions 1-15)
+INSERT INTO Answers (question_id, answer_text, is_correct)
+VALUES 
+    -- Question 1 (What is the capital of France?)
+    (1, 'Berlin', FALSE),
+    (1, 'Madrid', FALSE),
+    (1, 'Paris', TRUE),
+    (1, 'Rome', FALSE),
+    
+    -- Question 2 (What is the capital of Germany?)
+    (2, 'Paris', FALSE),
+    (2, 'Berlin', TRUE),
+    (2, 'Madrid', FALSE),
+    (2, 'Rome', FALSE),
+    
+    -- Question 3 (What is the capital of Spain?)
+    (3, 'Paris', FALSE),
+    (3, 'Berlin', FALSE),
+    (3, 'Madrid', TRUE),
+    (3, 'Rome', FALSE),
+    
+    (4, 'Madrid', FALSE),
+    (4, 'Paris', FALSE),
+    (4, 'Rome', TRUE),
+    (4, 'Berlin', FALSE),
+
+    (5, 'London', TRUE),
+    (5, 'Paris', FALSE),
+    (5, 'Rome', FALSE),
+    (5, 'Berlin', FALSE),
+
+    (6, 'Tokyo', TRUE),
+    (6, 'Beijing', FALSE),
+    (6, 'Seoul', FALSE),
+    (6, 'Bangkok', FALSE),
+
+    (7, 'Sydney', FALSE),
+    (7, 'Canberra', TRUE),
+    (7, 'Melbourne', FALSE),
+    (7, 'Perth', FALSE),
+
+    (8, 'Ottawa', TRUE),
+    (8, 'Toronto', FALSE),
+    (8, 'Vancouver', FALSE),
+    (8, 'Montreal', FALSE), 
+    
+    -- Question 9 (What is the capital of Brazil?)
+    (9, 'Brasilia', TRUE),
+    (9, 'Rio de Janeiro', FALSE),
+    (9, 'Sao Paulo', FALSE),
+    (9, 'Buenos Aires', FALSE),
+
+    -- Question 10 (What is the capital of India?)
+    (10, 'New Delhi', TRUE),
+    (10, 'Mumbai', FALSE),
+    (10, 'Kolkata', FALSE),
+    (10, 'Chennai', FALSE),
+
+    -- Question 11 (What is the capital of Russia?)
+    (11, 'Moscow', TRUE),
+    (11, 'Saint Petersburg', FALSE),
+    (11, 'Kazan', FALSE),
+    (11, 'Novosibirsk', FALSE),
+
+    -- Question 12 (What is the capital of Egypt?)
+    (12, 'Cairo', TRUE),
+    (12, 'Alexandria', FALSE),
+    (12, 'Luxor', FALSE),
+    (12, 'Giza', FALSE),
+
+    -- Question 13 (What is the capital of South Africa?)
+    (13, 'Pretoria', TRUE),
+    (13, 'Cape Town', FALSE),
+    (13, 'Durban', FALSE),
+    (13, 'Johannesburg', FALSE),
+
+    -- Question 14 (What is the capital of Argentina?)
+    (14, 'Buenos Aires', TRUE),
+    (14, 'Cordoba', FALSE),
+    (14, 'Rosario', FALSE),
+    (14, 'Mendoza', FALSE),
+
+    -- Question 15 (What is the capital of Mexico?)
+    (15, 'Mexico City', TRUE),
+    (15, 'Guadalajara', FALSE),
+    (15, 'Monterrey', FALSE),
+    (15, 'Cancun', FALSE),
+    
+    
+    (16, 'H2O', TRUE),
+    (16, 'O2', FALSE),
+    (16, 'CO2', FALSE),
+    (16, 'HO', FALSE),
+
+    -- Question 2 (How many planets are in the solar system?)
+    (17, '8', TRUE),
+    (17, '7', FALSE),
+    (17, '9', FALSE),
+    (17, '6', FALSE),
+
+    -- Question 3 (What is the chemical formula for carbon dioxide?)
+    (18, 'CO2', TRUE),
+    (18, 'H2O', FALSE),
+    (18, 'O2', FALSE),
+    (18, 'CH4', FALSE),
+
+    -- Question 4 (What is the speed of light?)
+    (19, '300,000 km/s', TRUE),
+    (19, '150,000 km/s', FALSE),
+    (19, '100,000 km/s', FALSE),
+    (19, '1,000,000 km/s', FALSE),
+
+    -- Question 5 (What is the largest planet in the solar system?)
+    (20, 'Jupiter', TRUE),
+    (20, 'Saturn', FALSE),
+    (20, 'Neptune', FALSE),
+    (20, 'Earth', FALSE),
+
+    -- Question 6 (What is the atomic number of hydrogen?)
+    (21, '1', TRUE),
+    (21, '2', FALSE),
+    (21, '8', FALSE),
+    (21, '6', FALSE),
+
+    -- Question 7 (What gas do plants absorb from the atmosphere?)
+    (22, 'Carbon Dioxide', TRUE),
+    (22, 'Oxygen', FALSE),
+    (22, 'Nitrogen', FALSE),
+    (22, 'Hydrogen', FALSE),
+
+    -- Question 8 (What is the process by which plants make their food?)
+    (23, 'Photosynthesis', TRUE),
+    (23, 'Respiration', FALSE),
+    (23, 'Digestion', FALSE),
+    (23, 'Fermentation', FALSE),
+
+    -- Question 9 (What is the primary source of energy for life on Earth?)
+    (24, 'The Sun', TRUE),
+    (24, 'The Moon', FALSE),
+    (24, 'Geothermal energy', FALSE),
+    (24, 'Nuclear power', FALSE),
+
+    -- Question 10 (Which element has the chemical symbol "O"?)
+    (25, 'Oxygen', TRUE),
+    (25, 'Osmium', FALSE),
+    (25, 'Oganesson', FALSE),
+    (25, 'Oxide', FALSE),
+    
+    -- Question 1 (Which is the largest continent?)
+    (26, 'Asia', TRUE),
+    (26, 'Africa', FALSE),
+    (26, 'Europe', FALSE),
+    (26, 'South America', FALSE),
+
+    -- Question 2 (Which country has the most time zones?)
+    (27, 'France', TRUE),
+    (27, 'USA', FALSE),
+    (27, 'Russia', FALSE),
+    (27, 'China', FALSE),
+
+    -- Question 3 (What is the longest river in the world?)
+    (28, 'Nile', TRUE),
+    (28, 'Amazon', FALSE),
+    (28, 'Yangtze', FALSE),
+    (28, 'Mississippi', FALSE),
+
+    -- Question 4 (Which desert is the largest in the world?)
+    (29, 'Sahara', TRUE),
+    (29, 'Arabian', FALSE),
+    (29, 'Gobi', FALSE),
+    (29, 'Kalahari', FALSE),
+
+    -- Question 5 (What is the smallest country in the world?)
+    (30, 'Vatican City', TRUE),
+    (30, 'Monaco', FALSE),
+    (30, 'Malta', FALSE),
+    (30, 'San Marino', FALSE),
+
+    -- Question 6 (What is the highest mountain in the world?)
+    (31, 'Mount Everest', TRUE),
+    (31, 'K2', FALSE),
+    (31, 'Kangchenjunga', FALSE),
+    (31, 'Mount Kilimanjaro', FALSE),
+
+    -- Question 7 (Which ocean is the largest?)
+    (32, 'Pacific Ocean', TRUE),
+    (32, 'Atlantic Ocean', FALSE),
+    (32, 'Indian Ocean', FALSE),
+    (32, 'Southern Ocean', FALSE),
+
+    -- Question 8 (Which country has the largest population?)
+    (33, 'China', TRUE),
+    (33, 'India', FALSE),
+    (33, 'USA', FALSE),
+    (33, 'Indonesia', FALSE),
+
+    -- Question 9 (Which city is known as the City of Canals?)
+    (34, 'Venice', TRUE),
+    (34, 'Amsterdam', FALSE),
+    (34, 'Bangkok', FALSE),
+    (34, 'Bruges', FALSE),
+
+    -- Question 10 (In which country would you find the Eiffel Tower?)
+    (35, 'France', TRUE),
+    (35, 'Italy', FALSE),
+    (35, 'Germany', FALSE),
+    (35, 'Spain', FALSE),
+
+    
+
+    -- Question 1 (Who was the first President of the United States?)
+    (36, 'George Washington', TRUE),
+    (36, 'Abraham Lincoln', FALSE),
+    (36, 'Thomas Jefferson', FALSE),
+    (36, 'John Adams', FALSE),
+
+    -- Question 2 (In which year did World War I start?)
+    (37, '1914', TRUE),
+    (37, '1912', FALSE),
+    (37, '1939', FALSE),
+    (37, '1945', FALSE),
+
+    -- Question 3 (Which empire was ruled by Julius Caesar?)
+    (38, 'Roman Empire', TRUE),
+    (38, 'Greek Empire', FALSE),
+    (38, 'Egyptian Empire', FALSE),
+    (38, 'Persian Empire', FALSE),
+
+    -- Question 4 (Who discovered America?)
+    (39, 'Christopher Columbus', TRUE),
+    (39, 'Marco Polo', FALSE),
+    (39, 'Ferdinand Magellan', FALSE),
+    (39, 'Leif Erikson', FALSE),
+
+    -- Question 5 (What year did the Berlin Wall fall?)
+    (40, '1989', TRUE),
+    (40, '1991', FALSE),
+    (40, '1979', FALSE),
+    (40, '2001', FALSE),
+
+    -- Question 6 (Which war was fought between the North and South regions in the United States?)
+    (41, 'Civil War', TRUE),
+    (41, 'World War II', FALSE),
+    (41, 'Revolutionary War', FALSE),
+    (41, 'Vietnam War', FALSE),
+
+    -- Question 7 (Who was the first man to walk on the moon?)
+    (42, 'Neil Armstrong', TRUE),
+    (42, 'Buzz Aldrin', FALSE),
+    (42, 'Yuri Gagarin', FALSE),
+    (42, 'John Glenn', FALSE),
+
+    -- Question 8 (What was the main ship used by Christopher Columbus on his first voyage?)
+    (43, 'Santa Maria', TRUE),
+    (43, 'Mayflower', FALSE),
+    (43, 'Victoria', FALSE),
+    (43, 'Golden Hind', FALSE),
+
+    -- Question 9 (In which year did the Titanic sink?)
+    (44, '1912', TRUE),
+    (44, '1905', FALSE),
+    (44, '1915', FALSE),
+    (44, '1920', FALSE),
+
+    -- Question 10 (Who was the first female Prime Minister of the United Kingdom?)
+    (45, 'Margaret Thatcher', TRUE),
+    (45, 'Theresa May', FALSE),
+    (45, 'Angela Merkel', FALSE),
+    (45, 'Hillary Clinton', FALSE),
+
+    -- Question 1 (What is 5 + 7?)
+    (46, '12', TRUE),
+    (46, '10', FALSE),
+    (46, '11', FALSE),
+    (46, '13', FALSE),
+
+    -- Question 2 (What is the square root of 64?)
+    (47, '8', TRUE),
+    (47, '7', FALSE),
+    (47, '9', FALSE),
+    (47, '6', FALSE),
+
+    -- Question 3 (What is 12 * 12?)
+    (48, '144', TRUE),
+    (48, '121', FALSE),
+    (48, '132', FALSE),
+    (48, '156', FALSE),
+
+    -- Question 4 (What is the value of Pi rounded to two decimal places?)
+    (49, '3.14', TRUE),
+    (49, '3.15', FALSE),
+    (49, '3.13', FALSE),
+    (49, '3.12', FALSE),
+
+    -- Question 5 (What is 15 divided by 3?)
+    (50, '5', TRUE),
+    (50, '3', FALSE),
+    (50, '6', FALSE),
+    (50, '4', FALSE),
+
+    -- Question 6 (What is 9 squared?)
+    (51, '81', TRUE),
+    (51, '72', FALSE),
+    (51, '64', FALSE),
+    (51, '100', FALSE),
+
+    -- Question 7 (If a triangle has sides 3, 4, and 5, what type of triangle is it?)
+    (52, 'Right triangle', TRUE),
+    (52, 'Equilateral triangle', FALSE),
+    (52, 'Isosceles triangle', FALSE),
+    (52, 'Scalene triangle', FALSE),
+
+    -- Question 8 (What is 100 minus 37?)
+    (53, '63', TRUE),
+    (53, '73', FALSE),
+    (53, '67', FALSE),
+    (53, '61', FALSE),
+
+    -- Question 9 (What is the formula for the area of a circle?)
+    (54, 'πr²', TRUE),
+    (54, '2πr', FALSE),
+    (54, 'πd²', FALSE),
+    (54, 'r²/π', FALSE),
+
+    -- Question 10 (What is 7 cubed?)
+    (55, '343', TRUE),
+    (55, '49', FALSE),
+    (55, '147', FALSE),
+    (55, '512', FALSE),
+    
+    

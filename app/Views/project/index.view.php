@@ -12,7 +12,14 @@
 </head>
 
 
-<body class="bg-gradient-to-b from-[#89CFF0] to-white min-h-screen flex items-center justify-center">
+<body class="bg-gradient-to-b from-[#89CFF0] to-white min-h-screen flex items-center justify-center relative">
+
+    <form action="/user/logout" method="POST" class="absolute right-5 top-5 z-50	">
+        <button type="submit"
+            class=" hover:scale-105 hover:shadow-3xl bg-red-500 hover:bg-red-700 transition-transform duration-300 ease-in-out text-white font-bold py-2 px-4 rounded-xl shadow-lg">
+            Logout
+        </button>
+    </form>
 
     <div
         class="backdrop-filter backdrop-blur-lg bg-white/30 p-8 rounded-xl shadow-2xl border border-white/10 max-w-lg mx-auto">
@@ -20,12 +27,13 @@
             <div class="mb-6 text-right">
                 <a href="/quiz/create">
                     <button
-                        class="bg-white text-black font-semibold py-2 px-5 rounded-lg hover:bg-gray-200 transition-transform duration-300 ease-in-out shadow-lg">
+                        class="hover:scale-105 hover:shadow-3xl bg-white text-black font-semibold py-2 px-5 rounded-lg hover:bg-gray-200 transition-transform duration-300 ease-in-out shadow-lg">
                         Create Quiz
                     </button>
                 </a>
             </div>
         <?php endif; ?>
+
 
         <h1 class="text-4xl font-extrabold text-center mb-8 text-gray-800 drop-shadow-lg"
             style="font-family: 'Poppins', sans-serif;">

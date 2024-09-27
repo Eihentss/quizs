@@ -14,6 +14,7 @@ return [
     '/user/changePassword' => '../app/Controllers/user/changePassword.php',
     '/user/changeEmail' => '../app/Controllers/user/changeEmail.php',
     '/user/delete' => '../app/Controllers/user/delete.php',
+    '/user/logout' => '../app/Controllers/user/logout.php',
 
 
     '/quiz/create' => '../app/Controllers/quiz/create.php',
