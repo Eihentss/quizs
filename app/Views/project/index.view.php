@@ -31,6 +31,12 @@
                         Create Quiz
                     </button>
                 </a>
+                <a href="/quiz/edit">
+                    <button
+                        class="hover:scale-105 hover:shadow-3xl bg-white text-black font-semibold py-2 px-5 rounded-lg hover:bg-gray-200 transition-transform duration-300 ease-in-out shadow-lg">
+                        Edit Quizes
+                    </button>
+                </a>
             </div>
         <?php endif; ?>
 
