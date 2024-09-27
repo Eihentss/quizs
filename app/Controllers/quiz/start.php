@@ -9,13 +9,13 @@ if (isset($_GET['quiz_id'])) {
     $quizId = $_GET['quiz_id'];
 
     // Get the quiz and its questions
-    $quiz = $quizModel->getQuizById($quizId);  
-    $questions = $quizModel->getQuestionsByQuizId($quizId);  
+    $quiz = $quizModel->getQuizById($quizId);
+    $questions = $quizModel->getQuestionsByQuizId($quizId);
     $totalQuestions = count($questions);
 
     // Get current question index from URL or default to 0
-    $currentQuestionIndex = isset($_GET['question_index']) ? (int)$_GET['question_index'] : 0;
-    $correctAnswers = isset($_GET['correct_answers']) ? (int)$_GET['correct_answers'] : 0;
+    $currentQuestionIndex = isset($_GET['question_index']) ? (int) $_GET['question_index'] : 0;
+    $correctAnswers = isset($_GET['correct_answers']) ? (int) $_GET['correct_answers'] : 0;
 
     // Check if the quiz is completed
     if (isset($_GET['completed']) && $_GET['completed'] === 'true') {
@@ -43,6 +43,10 @@ if (isset($_GET['quiz_id'])) {
             // Move to the next question
             $currentQuestionIndex++;
             if ($currentQuestionIndex >= $totalQuestions) {
+
+
+                $records = $quizModel->createRecord($_SESSION["user"]['user_id'], $quizId, $correctAnswers);
+
                 // All questions answered, redirect to results
                 header("Location: ?quiz_id=$quizId&completed=true&correct_answers=$correctAnswers");
                 exit;
