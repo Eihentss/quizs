@@ -37,6 +37,23 @@ class QuizModel
         $query->execute([':user_id' => $user_id, ':quiz_id' => $quiz_id, ':score' => $score]);
     }
 
+    public function updateQuiz($quiz_id, $title, $description)
+    {
+        $query = $this->db->dbconn->prepare("UPDATE Quizzes SET title = :title, description = :description WHERE quiz_id = :quiz_id");
+        $query->execute([':title' => $title, ':description' => $description, ':quiz_id' => $quiz_id]);
+    }
+
+    public function updateQuestion($question_id, $question_text)
+    {
+        $query = $this->db->dbconn->prepare("UPDATE Questions SET question_text = :question_text WHERE question_id = :question_id");
+        $query->execute([':question_text' => $question_text, ':question_id' => $question_id]);
+    }
+
+    public function updateAnswer($answer_id, $answer_text, $is_correct)
+    {
+        $query = $this->db->dbconn->prepare("UPDATE Answers SET answer_text = :answer_text, is_correct = :is_correct WHERE answer_id = :answer_id");
+        $query->execute([':answer_text' => $answer_text, ':is_correct' => $is_correct, ':answer_id' => $answer_id]);
+    }
 
     public function getAllQuizzes()
     {
@@ -62,8 +79,9 @@ class QuizModel
     {
         $query = $this->db->dbconn->prepare("SELECT * FROM Quizzes WHERE quiz_id = :quiz_id");
         $query->execute([':quiz_id' => $quiz_id]);
-        return $query->fetch(PDO::FETCH_ASSOC);  // Atgriež vienu viktorīnu
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
+
 
     // Iegūst visus jautājumus, kas saistīti ar konkrēto viktorīnu
     public function getQuestionsByQuizId($quiz_id)
@@ -87,8 +105,4 @@ class QuizModel
         $stmt->execute(['question_id' => $questionId]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
-
-
-
 }

@@ -8,8 +8,8 @@
 return [
     "host" => "localhost",
     "port" => "3306",
-    "dbname" => "quiz_completion_site",
+    "dbname" => "quizs",
     "user" => "root",
-    "password" => "root",
+    "password" => "",
     "charset" => "UTF8"
 ];
