@@ -1,11 +1,17 @@
 <?php
+require_once "../app/Core/DBConnect.php"; 
 require_once "../app/Models/quizModel.php"; 
 
-// Pārbauda, vai dati tiek nosūtīti ar POST metodi
+// Start session if it's not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Check if data is being sent via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quizModel = new QuizModel();
 
-    // Pārbauda POST vērtības un izmanto noklusējumus, ja tukšs
+    // Validate POST values
     $title = isset($_POST['title']) ? $_POST['title'] : null;
     $description = isset($_POST['description']) ? $_POST['description'] : null;
     $questions = isset($_POST['question_text']) ? $_POST['question_text'] : [];
@@ -13,29 +19,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $answers = isset($_POST['answers']) ? $_POST['answers'] : [];
     $is_correct = isset($_POST['is_correct']) ? $_POST['is_correct'] : [];
 
+    // Check if title and questions are provided
     if ($title && !empty($questions)) {
-        // Izveido viktorīnu
+        // Create the quiz
         $quiz_id = $quizModel->createQuiz($title, $description, $_SESSION['user']['user_id']);
 
-        // Saglabā jautājumus un atbildes
+        // Save questions and answers
         foreach ($questions as $index => $question_text) {
-            $question_id = $quizModel->createQuestion($quiz_id, $question_text, $types[$index]);
+            if (!empty($question_text)) {
+                // Create each question
+                $question_id = $quizModel->createQuestion($quiz_id, $question_text, $types[$index]);
 
-            foreach ($answers[$index] as $answer_index => $answer_text) {
-                $correct = isset($is_correct[$index][$answer_index]) ? 1 : 0;
-                $quizModel->createAnswer($question_id, $answer_text, $correct);
+                // Handle answers for each question
+                foreach ($answers[$index] as $answer_index => $answer_text) {
+                    if (!empty($answer_text)) {
+                        $correct = isset($is_correct[$index][$answer_index]) ? 1 : 0;
+                        $quizModel->createAnswer($question_id, $answer_text, $correct);
+                    }
+                }
             }
         }
 
-        // Pēc veiksmīgas saglabāšanas pāradresē uz vadības paneli
+        // Redirect to the dashboard after successful save
         header("Location: /project");
         exit();
     } else {
-        // Ja ir problēma ar datiem, izvada kļūdu
         echo "Quiz title and questions are required.";
     }
 } else {
-    // Ja dati netiek nosūtīti ar POST metodi, pāradresē uz veidlapas lapu
+    // If data is not sent via POST, redirect to the create form
     header("Location: /quiz/create");
     exit();
 }
+?>

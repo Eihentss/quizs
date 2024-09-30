@@ -1,0 +1,132 @@
+BEGIN TRANSACTION;
+
+-- Insert sample quizzes
+INSERT INTO Quizzes (title, description, created_by) VALUES
+    ('Pirmais Pasaules Karš', 'Test your general knowledge with a variety of questions.', 1),
+    ('Otrais Pasaules Karš', 'Explore your knowledge in various science topics.', 1),
+    ('Latvija PSRS', 'How well do you know your history?', 1),
+    ('PSRS Sabrukums', 'Challenge yourself with some math problems.', 1),
+    ('Latvijas Sākums, Pēc PSRS', 'Test your knowledge about countries and capitals.', 1);
+
+
+INSERT INTO Questions (quiz_id, question_text, question_type) VALUES
+    (1, 'Kad sākās 1. Pasaules Karšs', 'multiple_choice'),
+    (1, 'Kurā gadā beidzās 1. Pasaules Karšs?', 'multiple_choice'),
+    (1, 'Kādi bija galvenie iemesli, kas noveda pie 1. pasaules kara sākuma"?', 'short_answer')
+    (1, 'Kādas valstis bija iesaistītas Antantes un Trejsavienības aliansēs? ', 'multiple_choice'),
+    (1, 'Kāpēc Austrumfronte un Rietumfronte tika sauktas par galvenajām frontēm 1. pasaules kara laikā?', 'multiple_choice'),
+    (1, 'Kāda bija Vācijas militārā stratēģija karā un kādēļ tā izgāzās?', 'multiple_choice'),
+    (1, 'Kāda bija tranšeju kara taktika, un kā tās ietekmēja karadarbības gaitu?', 'multiple_choice'),
+    (1, 'Kādas tehnoloģiskās inovācijas un jauni ieroči parādījās 1. pasaules kara laikā?', 'multiple_choice'),
+    (1, 'Kāda bija ASV loma kara sākumā un kāpēc tā iesaistījās karā vēlāk?', 'multiple_choice'),
+    (1, 'Kāda bija sieviešu loma 1. pasaules kara laikā gan frontē, gan aizmugurē?', 'multiple_choice'),
+    (1, 'Kā Vācijas zaudējums karā ietekmēja tās politisko un ekonomisko situāciju pēc kara?', 'multiple_choice'),
+    (1, 'Kādi bija 1. pasaules kara galvenie rezultāti un sekas Eiropā un pasaulē?', 'multiple_choice'),
+    (1, 'Kā tika noslēgts Versaļas līgums, un kā tas ietekmēja tālākos notikumus Eiropā?', 'multiple_choice'),
+    (1, 'Kā 1. pasaules karš izmainīja globālo ģeopolitisko situāciju un kā tas sagatavoja augsni 2. pasaules karam?', 'multiple_choice'),
+    (1, 'Kādas bija galvenās sociālās un psiholoģiskās sekas, ko 1. pasaules karš atstāja uz karavīriem un civiliedzīvotājiem?', 'multiple_choice');
+    
+
+INSERT INTO Answers (question_id, answer_text, is_correct) VALUES
+    (34, '1914. gada 28. jūlijs.', TRUE),
+    (34, '1915. gada 26. jūnijs.', FALSE),
+    (34, '1914. gada 27. augusts.', FALSE),
+    (34, '1914. gada 21. septembris.', FALSE),
+
+
+       (35, '1918. gada 11. novembris.', TRUE),
+    (35, '1919. gada 18. novembris.', FALSE),
+    (35, '1921. gada 11. Novebris.', FALSE),
+    (35, '1918. gada 18. septembris.', FALSE),
+    
+
+       (36, 'Imperiālisms, nacionālisms, militārisms un sarežģītu aliansu sistēmas, kā arī erchercoga Franca Ferdinanda slepkavība', TRUE),
+    (36, 'putina kara pieteikums Ukrainā', FALSE),
+    (36, 'Imperiālisms, nacionālisms Franca Ferdinanda slepkavība.', FALSE),
+    (36, 'valstis vēlējās sacensties par lielāko teritoriju, varu.', FALSE),
+
+       (37, 'Antante: Lielbritānija, Francija, Krievija; Trejsavienība: Vācija, Austroungārija, Itālija (vēlāk mainīja pusi).', TRUE),
+    (37, 'Antante: Lielbritānija, Francija, Krievija; Trejsavienība: Vācija, Baltkrievija, Itālija (vēlāk mainīja pusi).', FALSE),
+    (37, 'Antante:  Francija, Krievija Šveice; Trejsavienība: Vācija, Austroungārija, Itālija  Čehija (vēlāk mainīja pusi).', FALSE),
+    (37, 'Antante: Lielbritānija, Francija, Polija; Trejsavienība: Vācija, Austroungārija, Itālija Krievija(vēlāk mainīja pusi).', FALSE),
+
+       (38, 'Tās bija galvenās kara frontes Eiropā, kur notika lielākās un asiņainākās cīņas.', TRUE),
+    (38, 'Tās bija galvenās bīstamākas valstis' ,FALSE),
+    (38, 'Vadija Kara Gaitu', FALSE),
+    (38, 'NEVIENA PAREIZA ATBILDE.', FALSE),
+
+       (39, 'Šlīfena plāns: ātra uzvara pār Franciju un tad pret Krieviju. Tas izgāzās Rietumu frontes tranšeju kara un ilgstošās aizsardzības dēļ.', TRUE),
+    (39, 'Šlīfena plāns: ātra uzvara pār Krieviju un tad pret Baltijas valstīm. Tas izgāzās Rietumu frontes tranšeju kara un ilgstošās aizsardzības dēļ.', FALSE),
+    (39, 'Šlīfena plāns: ātra uzvara pār Franciju un tad pret Baltijas valstīm. Tas izgāzās Rietumu frontes tranšeju kara un ilgstošās aizsardzības dēļ.', FALSE),
+    (39, 'NEVIENA PAREIZA ATBILDE.', FALSE),
+
+
+       (40, 'tanki, kaujas lidmašīnas, ložmetēji, ķīmiskie ieroči (gāzes) ', TRUE),
+    (40, 'tanki,būltas lidmašīnas, ložmetēji, ķīmiskie ieroči (gāzes)', FALSE),
+    (40, 'Tanki, ložmetēji, ķīmiskie ieroči (gāzes)', FALSE),
+    (40, 'Tanki, kaujas lidmašīnas, ložmetēji, ķīmiskie ieroči, ak-47 (gāzes)', FALSE),
+
+       (41, 'Sākotnēji neitralitāte, bet iesaistījās 1917. gadā pēc zemūdeņu kara un sabiedroto atbalsta.', TRUE),
+    (41, 'Sākotnēji neitralitāte, bet iesaistījās 1918. gadā pēc zemūdeņu kara un sabiedroto atbalsta.', FALSE),
+    (41, 'Sākotnēji agresīvi, bet iesaistījās 1917. gadā pēc zemūdeņu kara un sabiedroto atbalsta.', FALSE),
+    (41, 'Agresīvi, bet iesaistījās 1917. gadā pēc zemūdeņu kara un sabiedroto atbalsta.', FALSE),
+
+
+       (42, 'Darbs rūpnīcās, medicīnas aprūpe, pārtikas ražošana aizvietoja vīriešu darbaspēku.', TRUE),
+    (42, 'Darbs rūpnīcās, medicīnas aprūpe, pārtikas ražošana.', FALSE),
+    (42, ' medicīnas aprūpe, pārtikas ražošana; aizvietoja vīriešu darbaspēku.', FALSE),
+    (42, ' Darbs rūpnīcās, medicīnas aprūpe, aizvietoja vīriešu darbaspēku.', FALSE),
+
+
+     (43, 'ekonomiska krīze, politiska nestabilitāte, kas noveda pie Veimāras republikas vājuma.', TRUE),
+    (43, 'Smagi reparāciju maksājumi, ekonomiska krīze, politiska nestabilitāte, kas noveda pie Veimāras republikas vājuma.', FALSE),
+    (43, 'Smagi reparāciju maksājumi, ekonomiska krīze,  kas noveda pie Veimāras republikas spēka.', FALSE),
+    (43, ' ekonomiska krīze, politiska nestabilitāte ', FALSE),
+
+
+       (44, 'Imperiju sabrukums (Osmaņu, Austroungārijas), jaunas valstis, politiskas izmaiņas, un starptautiska spriedze.', TRUE),
+    (44, ' jaunas valstis, politiskas izmaiņas, un starptautiska spriedze.', FALSE),
+    (44, 'Visas Pareizās Atbildes', FALSE),
+    (44, 'Neviena pareiza atbilde', FALSE),
+
+
+       (45, 'Līgums vainoja Vāciju par karu un uzlika reparācijas, radot neapmierinātību, kas veicināja 2. pasaules kara rašanos.', TRUE),
+    (45, '1Līgums vainoja Krieviju par karu un uzlika reparācijas, radot neapmierinātību, kas veicināja 2. pasaules kara rašanos.', FALSE),
+    (45, 'Visas Pareizās Atbildes', FALSE),
+    (45, 'Līgums vainoja Vāciju par karu un uzlika reparācijas, radot neapmierinātību, kas veicināja 3. pasaules kara rašanos.', FALSE),
+
+
+       (46, 'Mainījās robežas, radās jaunas valstis, radikāla neapmierinātība ar miera līgumiem, ekonomiska nestabilitāte.', TRUE),
+    (46, 'Mainījās robežas, radās jaunas valstis dažas izmira, radikāla neapmierinātība ar miera līgumiem, ekonomiska nestabilitāte.', FALSE),
+    (46, 'Mainījās robežas, radās jaunas valstis,  ekonomiska nestabilitāte.', FALSE),
+    (46, 'Mainījās robežas,  ekonomiska nestabilitāte.', FALSE),
+
+
+       (47, 'Traumas, pazudušās paaudzes efekts, politiska radikalizācija un psihoemocionālas sekas.', TRUE),
+    (47, 'politiska radikalizācija un psihoemocionālas sekas.', FALSE),
+    (47, 'Traumas, pazudušās paaudzes efekts, politiska radikalizācija un psihoemocionālas sekas. Naudas izmaiņa valūtā kritumos', FALSE),
+    (47, 'visas atbildes', FALSE),
+
+
+         (48, 'tanki, kaujas lidmašīnas, ložmetēji, ķīmiskie ieroči (gāzes) ', TRUE),
+    (48, 'tanki,būltas lidmašīnas (gāzes)', FALSE),
+    (48, 'Tanki,  ķīmiskie ieroči (gāzes)', FALSE),
+    (48, 'Tanki,  ieroči, ak-47 (gāzes)', FALSE);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

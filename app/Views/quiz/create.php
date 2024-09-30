@@ -10,13 +10,13 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
 <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full">
-<div style="position: absolute; top: 20px; right: 20px;">
-    <a href="/project">
-        <button style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            Quiz
-        </button>
-    </a>
-</div>
+    <div style="position: absolute; top: 20px; right: 20px;">
+        <a href="/project">
+            <button style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Quiz
+            </button>
+        </a>
+    </div>
     <form action="/quiz/store" method="POST">
         <label for="quiz_selection" class="block text-gray-700 font-semibold mb-2">Select a Quiz:</label>
         <select name="quiz_selection" id="quiz_selection" class="w-full p-2 border border-gray-300 rounded mb-4" required>
@@ -44,22 +44,18 @@
                     <div class="answers-container mb-2">
                         <div class="answer flex items-center mb-2">
                             <input type="text" name="answers[0][0]" required placeholder="Correct answer" class="flex-1 p-2 border border-gray-300 rounded mr-2">
-                            <input type="radio" name="is_correct[0]" value="0" checked> Correct
+                            <input type="hidden" name="is_correct[0]" value="0"> <!-- Marks the first answer as correct -->
                         </div>
                         <div class="answer flex items-center mb-2">
                             <input type="text" name="answers[0][1]" required placeholder="Wrong answer" class="flex-1 p-2 border border-gray-300 rounded mr-2">
-                            <input type="radio" name="is_correct[0]" value="1"> Incorrect
                         </div>
                         <div class="answer flex items-center mb-2">
                             <input type="text" name="answers[0][2]" required placeholder="Wrong answer" class="flex-1 p-2 border border-gray-300 rounded mr-2">
-                            <input type="radio" name="is_correct[0]" value="2"> Incorrect
                         </div>
                         <div class="answer flex items-center mb-2">
                             <input type="text" name="answers[0][3]" required placeholder="Wrong answer" class="flex-1 p-2 border border-gray-300 rounded mr-2">
-                            <input type="radio" name="is_correct[0]" value="3"> Incorrect
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -90,19 +86,16 @@
             <div class="answers-container mb-2">
                 <div class="answer flex items-center mb-2">
                     <input type="text" name="answers[${questionCount}][0]" required placeholder="Correct answer" class="flex-1 p-2 border border-gray-300 rounded mr-2">
-                    <input type="radio" name="is_correct[${questionCount}]" value="0" checked> Correct
+                    <input type="hidden" name="is_correct[${questionCount}]" value="0"> <!-- Marks the first answer as correct -->
                 </div>
                 <div class="answer flex items-center mb-2">
                     <input type="text" name="answers[${questionCount}][1]" required placeholder="Wrong answer" class="flex-1 p-2 border border-gray-300 rounded mr-2">
-                    <input type="radio" name="is_correct[${questionCount}]" value="1"> Incorrect
                 </div>
                 <div class="answer flex items-center mb-2">
                     <input type="text" name="answers[${questionCount}][2]" required placeholder="Wrong answer" class="flex-1 p-2 border border-gray-300 rounded mr-2">
-                    <input type="radio" name="is_correct[${questionCount}]" value="2"> Incorrect
                 </div>
                 <div class="answer flex items-center mb-2">
                     <input type="text" name="answers[${questionCount}][3]" required placeholder="Wrong answer" class="flex-1 p-2 border border-gray-300 rounded mr-2">
-                    <input type="radio" name="is_correct[${questionCount}]" value="3"> Incorrect
                 </div>
             </div>
         </div>`;

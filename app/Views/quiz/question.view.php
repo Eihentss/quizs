@@ -15,13 +15,20 @@
         .progress-bar {
             height: 10px;
             background-color: #4CAF50;
-            width: <?php echo ($_SESSION['current_question_index'] / $_SESSION['total_questions']) * 100; ?>%;
+            width: <?php 
+                if (isset($totalQuestions) && $totalQuestions > 0) {
+                    echo ($currentQuestionIndex + 1) / $totalQuestions * 100; 
+                } else {
+                    echo 0;
+                }
+            ?>%;
             border-radius: 5px;
+            transition: width 0.5s ease; /* Smooth transition */
         }
-        
+
         /* Style for the Submit button */
         .submit-btn {
-            background: linear-gradient(to right, #a7c5eb, #89b0e4, #72a0e0); /* Baby blue gradient */
+            background: linear-gradient(to right, #a7c5eb, #89b0e4, #72a0e0);
             color: white;
             font-weight: bold;
             border-radius: 50px;
@@ -32,16 +39,16 @@
         }
 
         .submit-btn:hover {
-            background: linear-gradient(to right, #89b0e4, #72a0e0, #5a90dc); /* Darker baby blue on hover */
-            transform: translateY(-5px); /* Lifting effect */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+            background: linear-gradient(to right, #89b0e4, #72a0e0, #5a90dc);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         /* Radio button container style */
         .radio-container:hover {
-            background-color: #e3f2fd; /* Light blue on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
-            transform: translateY(-5px); /* Slight lift effect */
+            background-color: #e3f2fd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
         }
     </style>
 </head>
@@ -57,37 +64,38 @@
         <div class="progress-bar"></div>
     </div>
     <p class="text-center text-gray-700 mb-4">
-        Question <?php echo $_SESSION['current_question_index'] + 1; ?> of <?php echo $_SESSION['total_questions']; ?>
+        Question <?php echo ($currentQuestionIndex + 1); ?> of <?php echo htmlspecialchars($totalQuestions); ?>
     </p>
 
     <form action="" method="POST">
         <div class="mb-10">
             <h3 class="text-2xl font-semibold mb-6 text-gray-700">
-                Question <?php echo $_SESSION['current_question_index'] + 1; ?>: <?php echo htmlspecialchars($currentQuestion['question_text']); ?>
+                Question <?php echo ($currentQuestionIndex + 1); ?>: <?php echo htmlspecialchars($currentQuestion['question_text']); ?>
             </h3>
 
             <?php
-            // Get the answers for this question
             $answers = $quizModel->getAnswersByQuestionId($currentQuestion['question_id']);
-            
-            // Shuffle the answers
-            shuffle($answers);
-            ?>
 
-            <div class="space-y-4">
-                <?php foreach ($answers as $answer): ?>
+            if (empty($answers)) {
+                echo '<p class="text-red-500">No answers available for this question.</p>';
+            } else {
+                shuffle($answers);
+                echo '<div class="space-y-4">';
+                foreach ($answers as $answer): ?>
                     <div class="flex items-center p-4 bg-gray-100 rounded-lg shadow-inner radio-container transition-colors">
                         <input type="radio" name="question_<?php echo $currentQuestion['question_id']; ?>" value="<?php echo $answer['answer_id']; ?>" class="mr-4 h-6 w-6 text-blue-600 border-gray-300 focus:ring-blue-500" required>
                         <label class="text-lg text-gray-800"><?php echo htmlspecialchars($answer['answer_text']); ?></label>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                <?php endforeach;
+                echo '</div>'; // Close the space-y-4 div
+            }
+            ?>
         </div>
 
         <!-- Submit button -->
         <div class="flex justify-center mt-8">
             <button type="submit" class="submit-btn">
-                Submit Quiz
+                Submit Answer
             </button>
         </div>
     </form>
