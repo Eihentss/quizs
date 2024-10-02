@@ -50,8 +50,16 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transform: translateY(-5px);
         }
+        
     </style>
 </head>
+<script>
+    // Disable the back button navigation   
+    history.pushState(null, null, location.href);
+    window.onpopstate = function() {
+        history.go(1);
+    };
+</script>
 <body class="bg-gradient-to-b from-[#89CFF0] to-white flex justify-center items-center min-h-screen">
 
 <div class="bg-white shadow-xl rounded-2xl p-10 max-w-3xl w-full transform hover:scale-105 transition-transform duration-300 ease-in-out">
@@ -67,39 +75,39 @@
         Question <?php echo ($currentQuestionIndex + 1); ?> of <?php echo htmlspecialchars($totalQuestions); ?>
     </p>
 
-    <form action="" method="POST">
-        <div class="mb-10">
-            <h3 class="text-2xl font-semibold mb-6 text-gray-700">
-                Question <?php echo ($currentQuestionIndex + 1); ?>: <?php echo htmlspecialchars($currentQuestion['question_text']); ?>
-            </h3>
+    <form action="" method="POST">  
+    <div class="mb-10">
+        <h3 class="text-2xl font-semibold mb-6 text-gray-700">
+            Question <?php echo ($currentQuestionIndex + 1); ?>: <?php echo htmlspecialchars($currentQuestion['question_text']); ?>
+        </h3>
 
-            <?php
-            $answers = $quizModel->getAnswersByQuestionId($currentQuestion['question_id']);
+        <?php
+        $answers = $quizModel->getAnswersByQuestionId($currentQuestion['question_id']);
 
-            if (empty($answers)) {
-                echo '<p class="text-red-500">No answers available for this question.</p>';
-            } else {
-                shuffle($answers);
-                echo '<div class="space-y-4">';
-                foreach ($answers as $answer): ?>
-                    <div class="flex items-center p-4 bg-gray-100 rounded-lg shadow-inner radio-container transition-colors">
-                        <input type="radio" name="question_<?php echo $currentQuestion['question_id']; ?>" value="<?php echo $answer['answer_id']; ?>" class="mr-4 h-6 w-6 text-blue-600 border-gray-300 focus:ring-blue-500" required>
-                        <label class="text-lg text-gray-800"><?php echo htmlspecialchars($answer['answer_text']); ?></label>
-                    </div>
-                <?php endforeach;
-                echo '</div>'; // Close the space-y-4 div
-            }
-            ?>
-        </div>
+        if (empty($answers)) {
+            echo '<p class="text-red-500">No answers available for this question.</p>';
+        } else {
+            shuffle($answers);
+            echo '<div class="space-y-4">';
+            foreach ($answers as $answer): ?>
+                <label class="flex items-center p-4 bg-gray-100 rounded-lg shadow-inner radio-container transition-colors cursor-pointer">
+                    <input type="radio" name="question_<?php echo $currentQuestion['question_id']; ?>" value="<?php echo $answer['answer_id']; ?>" class="mr-4 h-6 w-6 text-blue-600 border-gray-300 focus:ring-blue-500" required>
+                    <span class="text-lg text-gray-800"><?php echo htmlspecialchars($answer['answer_text']); ?></span>
+                </label>
+            <?php endforeach;
+            echo '</div>'; // Close the space-y-4 div
+        }
+        ?>
+    </div>
 
-        <!-- Submit button -->
-        <div class="flex justify-center mt-8">
-            <button type="submit" class="submit-btn">
-                Submit Answer
-            </button>
-        </div>
-    </form>
-</div>
+    <!-- Submit button -->
+    <div class="flex justify-center mt-8">
+        <button type="submit" class="submit-btn">
+            Submit Answer
+        </button>
+    </div>
+</form>
+
 
 </body>
 </html>

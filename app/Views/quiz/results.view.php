@@ -25,8 +25,15 @@
             }
         </style>
     </head>
+    <script>
+    // Disable the back button navigation
+    history.pushState(null, null, location.href);
+    window.onpopstate = function() {
+        history.go(1);
+    };
+</script>
     <body class="bg-gradient-to-r from-[#89CFF0] to-white flex justify-center items-center min-h-screen">
-
+ 
     <div class="bg-white shadow-xl rounded-2xl p-10 max-w-3xl w-full">
         <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8">
             Congratulations!
