@@ -12,7 +12,6 @@
     <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8">
         <?php echo htmlspecialchars($title); ?>
     </h1>
-
     <form action="/quiz/start?quiz_id=<?php echo $quizId; ?>" method="POST">
         <div class="mb-10">
             <h3 class="text-2xl font-semibold mb-6 text-gray-700">
