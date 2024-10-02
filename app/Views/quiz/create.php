@@ -75,7 +75,7 @@
 
             <!-- Submit button -->
             <input type="submit" value="Submit"
-                class="bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 w-full transition-transform duration-300 ease-in-out hover:scale-105">
+                class="bg-blue-200 text-black font-bold py-3 px-6 rounded-lg hover:bg-blue-300 w-full transition-transform duration-300 ease-in-out hover:scale-105">
         </form>
     </div>
 
@@ -98,9 +98,9 @@
                         <input type="hidden" name="is_correct[${questionCount}]" value="0">
                     </div>
                     <?php for ($i = 1; $i <= 3; $i++): ?>
-                        <div class="answer flex items-center mb-2">
-                            <input type="text" name="answers[${questionCount}][<?= $i ?>]" required placeholder="Wrong answer" class="flex-1 p-4 border border-gray-300 rounded-md shadow-sm mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-                        </div>
+                                <div class="answer flex items-center mb-2">
+                                    <input type="text" name="answers[${questionCount}][<?= $i ?>]" required placeholder="Wrong answer" class="flex-1 p-4 border border-gray-300 rounded-md shadow-sm mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                                </div>
                     <?php endfor; ?>
                 </div>
             </div>`;
