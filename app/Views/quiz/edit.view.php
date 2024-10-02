@@ -88,6 +88,11 @@
                     <?php endforeach; ?>
                 </div>
 
+                <button type="button" id="add-question"
+                    class="bg-blue-500 text-white font-bold py-3 px-6 rounded-full hover:bg-blue-600 transition-transform duration-300 ease-in-out shadow-lg hover:scale-105 mb-6">
+                    Add Another Question
+                </button>
+
                 <!-- Submit Button -->
                 <input type="submit" value="Save Changes"
                     class="bg-blue-200 text-black font-bold py-3 px-6 rounded-lg hover:bg-blue-300 w-full transition-transform duration-300 ease-in-out hover:scale-105">
@@ -96,5 +101,40 @@
     </div>
 
 </body>
+<script>
+    let questionCount = <?= count($existingQuestions) ?>;
+
+    document.getElementById('add-question').addEventListener('click', function () {
+        const container = document.getElementById('questions-container');
+        const questionHTML = `
+        <div class="question mb-6 p-6 border border-gray-300 rounded-lg backdrop-filter backdrop-blur-md bg-white/70 shadow-sm">
+            <label for="question_text[]" class="block text-gray-800 font-semibold mb-2 text-lg">Question:</label>
+            <input type="text" name="question_text[]" required class="w-full p-4 border border-gray-300 rounded-md shadow-sm mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+
+            <label class="block text-gray-800 font-semibold mb-2 text-lg">Answer Options:</label>
+            <div class="answers-container mb-4">
+                <div class="answer flex items-center mb-2">
+                    <input type="text" name="answers[${questionCount}][0]" required placeholder="Answer" class="flex-1 p-4 border border-gray-300 rounded-md shadow-sm mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                    <input type="radio" name="is_correct[${questionCount}]" value="0" class="ml-2"> Correct
+                </div>
+                <div class="answer flex items-center mb-2">
+                    <input type="text" name="answers[${questionCount}][1]" required placeholder="Answer" class="flex-1 p-4 border border-gray-300 rounded-md shadow-sm mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                    <input type="radio" name="is_correct[${questionCount}]" value="1" class="ml-2"> Correct
+                </div>
+                <div class="answer flex items-center mb-2">
+                    <input type="text" name="answers[${questionCount}][2]" required placeholder="Answer" class="flex-1 p-4 border border-gray-300 rounded-md shadow-sm mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                    <input type="radio" name="is_correct[${questionCount}]" value="2" class="ml-2"> Correct
+                </div>
+                <div class="answer flex items-center mb-2">
+                    <input type="text" name="answers[${questionCount}][3]" required placeholder="Answer" class="flex-1 p-4 border border-gray-300 rounded-md shadow-sm mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                    <input type="radio" name="is_correct[${questionCount}]" value="3" class="ml-2"> Correct
+                </div>
+            </div>
+        </div>`;
+        container.insertAdjacentHTML('beforeend', questionHTML);
+        questionCount++;
+    });
+
+</script>
 
 </html>
