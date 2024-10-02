@@ -8,7 +8,7 @@
     <title><?php echo htmlspecialchars($title); ?></title>
 </head>
 
-<body class="bg-gradient-to-r from-blue-50 to-blue-100 flex justify-center items-center min-h-screen">
+<body class="bg-gradient-to-b from-[#89CFF0] to-white flex justify-center items-center min-h-screen">
 
     <form action="/project" method="POST" class="absolute left-5 top-5 z-50	">
         <button type="submit"
