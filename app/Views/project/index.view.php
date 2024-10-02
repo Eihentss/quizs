@@ -19,9 +19,9 @@
     </form>
 
     <div
-        class="backdrop-filter backdrop-blur-lg bg-white/50 p-12 rounded-2xl shadow-3xl border border-white/20 w-full h-full max-w-2xl mx-auto flex flex-col items-center justify-center">
+        class="mt-6 backdrop-filter backdrop-blur-lg bg-white/50 p-12 rounded-2xl shadow-3xl border border-white/20 w-full h-full max-w-2xl mx-auto flex flex-col items-center justify-center">
         <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
-            <div class="mb-6 text-right w-full">
+            <div class="my-6 text-right w-full">
                 <a href="/quiz/create">
                     <button
                         class="hover:scale-105 hover:shadow-3xl bg-white text-black font-semibold py-2 px-5 rounded-lg hover:bg-gray-200 transition-transform duration-300 ease-in-out shadow-lg">
