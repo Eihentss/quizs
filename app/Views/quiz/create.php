@@ -21,18 +21,8 @@
     <!-- Form container -->
     <div class="backdrop-filter backdrop-blur-lg bg-white/50 p-12 rounded-2xl shadow-3xl border border-white/20 w-full h-full max-w-2xl mx-auto flex flex-col items-center justify-center">
         <form action="/quiz/store" method="POST" class="w-full">
-            <!-- Quiz selection -->
-            <label for="quiz_selection" class="block text-gray-800 font-semibold mb-4 text-lg" style="font-family: 'Poppins', sans-serif;">Select a Quiz:</label>
-            <select name="quiz_selection" id="quiz_selection" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out text-lg mb-6">
-                <option value="">Choose a quiz...</option>
-                <?php foreach ($quizzes as $quiz): ?>
-                    <option value="<?= htmlspecialchars($quiz['quiz_id']) ?>"><?= htmlspecialchars($quiz['title']) ?></option>
-                <?php endforeach; ?>
-                <option value="new_quiz">Create New Quiz</option>
-            </select>
-
-            <!-- New quiz container -->
-            <div id="new-quiz-container" style="display: none;" class="w-full">
+            <!-- New quiz container (visible by default) -->
+            <div id="new-quiz-container" class="w-full">
                 <label for="title" class="block text-gray-800 font-semibold mb-4 text-lg" style="font-family: 'Poppins', sans-serif;">Quiz Title:</label>
                 <input type="text" name="title" required class="w-full p-4 border border-gray-300 rounded-md shadow-sm mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
 
@@ -75,14 +65,6 @@
 
     <!-- JavaScript -->
     <script>
-        const quizSelection = document.getElementById('quiz_selection');
-        const newQuizContainer = document.getElementById('new-quiz-container');
-
-        // Toggle new quiz form visibility
-        quizSelection.addEventListener('change', function() {
-            newQuizContainer.style.display = this.value === 'new_quiz' ? 'block' : 'none';
-        });
-
         let questionCount = 1;
 
         // Add another question dynamically
