@@ -26,12 +26,13 @@
         </style>
     </head>
     <script>
-    // Disable the back button navigation
-    history.pushState(null, null, location.href);
-    window.onpopstate = function() {
-        history.go(1);
+    // Disable the browser's back button
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+        window.history.go(1);
     };
 </script>
+
     <body class="bg-gradient-to-r from-[#89CFF0] to-white flex justify-center items-center min-h-screen">
  
     <div class="bg-white shadow-xl rounded-2xl p-10 max-w-3xl w-full">

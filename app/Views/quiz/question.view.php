@@ -50,16 +50,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transform: translateY(-5px);
         }
-        
     </style>
-</head>
-<script>
-    // Disable the back button navigation   
-    history.pushState(null, null, location.href);
-    window.onpopstate = function() {
-        history.go(1);
-    };
-</script>
+
 <body class="bg-gradient-to-b from-[#89CFF0] to-white flex justify-center items-center min-h-screen">
 
 <div class="bg-white shadow-xl rounded-2xl p-10 max-w-3xl w-full transform hover:scale-105 transition-transform duration-300 ease-in-out">
@@ -108,6 +100,15 @@
     </div>
 </form>
 
+</div>
+
+<script>
+    // Disable the browser's back button
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+        window.history.go(1);
+    };
+</script>
 
 </body>
 </html>
